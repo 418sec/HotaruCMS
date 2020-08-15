@@ -493,7 +493,12 @@ return false;
 		foreach ($settings as $setting)
 		{                    
 			if (!defined($setting->settings_name)) {
-				define($setting->settings_name, $setting->settings_value);
+				$name = $setting->settings_name;
+				$value = $setting->settings_value;
+				if ($name === 'SITE_NAME') {
+					$value = strip_tags($value);
+				}
+				define($name, $value);
 			}                                               
 		}  
                 
